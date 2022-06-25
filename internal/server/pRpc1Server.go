@@ -25,3 +25,27 @@ func (s *PRpc1Server) Ping(ctx context.Context, in *prpc1.Request) (*prpc1.Respo
 	l := logic.NewPingLogic(ctx, s.svcCtx)
 	return l.Ping(in)
 }
+
+// Test1 测试1
+func (s *PRpc1Server) Test1(ctx context.Context, in *prpc1.Test1Req) (*prpc1.Test1Resp, error) {
+	l := logic.NewTest1Logic(ctx, s.svcCtx)
+	return l.Test1(in)
+}
+
+// Test2 测试2
+func (s *PRpc1Server) Test2(ctx context.Context, in *prpc1.Test2Req) (*prpc1.Test2Resp, error) {
+	l := logic.NewTest2Logic(ctx, s.svcCtx)
+	return l.Test2(in)
+}
+
+//  Test3 测试3
+func (s *PRpc1Server) Test3(ctx context.Context, in *prpc1.Test3Req) (*prpc1.Test3Resp, error) {
+	l := logic.NewTest3Logic(ctx, s.svcCtx)
+	return l.Test3(in)
+}
+
+//  CheckAuth 风控检查
+func (s *PRpc1Server) CheckAuth(ctx context.Context, in *prpc1.AuthReq) (*prpc1.AuthResp, error) {
+	l := logic.NewCheckAuthLogic(ctx, s.svcCtx)
+	return l.CheckAuth(in)
+}

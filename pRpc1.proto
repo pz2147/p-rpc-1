@@ -13,6 +13,63 @@ message Response {
   string pong = 1;
 }
 
+message Test1Req {
+  string rStr = 1;
+  int64 rInt = 2;
+  Test1CellModel rMap = 3;
+}
+
+message Test1CellModel {
+  string cp = 1;
+}
+
+message Test1Resp {
+  string rStr = 1;
+  int64 rInt = 2;
+  Test1CellModel rMap = 3;
+}
+
+message Test2Req {
+  string rStr = 1;
+  int64 rInt = 2;
+}
+
+message Test2Resp {
+  string rStr = 1;
+  int64 rInt = 2;
+}
+
+message Test3Req {
+  string rStr = 1;
+  int64 rInt = 2;
+}
+
+message Test3Resp {
+  string rStr = 1;
+  int64 rInt = 2;
+}
+
+message AuthReq {
+  bool rBool = 1;
+}
+
+message AuthResp {
+  bool rBool = 1;
+}
+
+
 service PRpc1 {
   rpc Ping(Request) returns(Response);
+
+  //Test1 测试1
+  rpc Test1(Test1Req) returns(Test1Resp);
+
+  //Test2 测试2
+  rpc Test2(Test2Req) returns(Test2Resp);
+
+  // Test3 测试3
+  rpc Test3(Test3Req) returns(Test3Resp);
+
+  // CheckAuth 风控检查
+  rpc CheckAuth(AuthReq) returns(AuthResp);
 }
