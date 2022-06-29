@@ -13,34 +13,23 @@ import (
 )
 
 type (
-	AuthReq        = prpc1.AuthReq
-	AuthResp       = prpc1.AuthResp
-	EmptyReq       = prpc1.EmptyReq
-	EmptyResp      = prpc1.EmptyResp
-	Request        = prpc1.Request
-	Response       = prpc1.Response
-	Test1CellModel = prpc1.Test1CellModel
-	Test1Req       = prpc1.Test1Req
-	Test1Resp      = prpc1.Test1Resp
-	Test2Req       = prpc1.Test2Req
-	Test2Resp      = prpc1.Test2Resp
-	Test3Req       = prpc1.Test3Req
-	Test3Resp      = prpc1.Test3Resp
+	AuthReq      = prpc1.AuthReq
+	AuthResp     = prpc1.AuthResp
+	EmptyReq     = prpc1.EmptyReq
+	EmptyResp    = prpc1.EmptyResp
+	Request      = prpc1.Request
+	Response     = prpc1.Response
+	UserInfoReq  = prpc1.UserInfoReq
+	UserInfoResp = prpc1.UserInfoResp
 
 	PRpc1 interface {
 		Ping(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
 		// ESGuide elastic教程
 		ESGuide(ctx context.Context, in *EmptyReq, opts ...grpc.CallOption) (*EmptyResp, error)
-		// Test1 测试1
-		Test1(ctx context.Context, in *Test1Req, opts ...grpc.CallOption) (*Test1Resp, error)
-		// Test2 测试2
-		Test2(ctx context.Context, in *Test2Req, opts ...grpc.CallOption) (*Test2Resp, error)
-		//  Test3 测试3
-		Test3(ctx context.Context, in *Test3Req, opts ...grpc.CallOption) (*Test3Resp, error)
-		//  CheckAuth 风控检查
-		CheckAuth(ctx context.Context, in *AuthReq, opts ...grpc.CallOption) (*AuthResp, error)
-		//  CheckAuth 风控检查
+		//  Login 登录
 		Login(ctx context.Context, in *AuthReq, opts ...grpc.CallOption) (*AuthResp, error)
+		//  UserInfo 获取用户数据
+		UserInfoGet(ctx context.Context, in *UserInfoReq, opts ...grpc.CallOption) (*UserInfoResp, error)
 	}
 
 	defaultPRpc1 struct {
@@ -65,32 +54,14 @@ func (m *defaultPRpc1) ESGuide(ctx context.Context, in *EmptyReq, opts ...grpc.C
 	return client.ESGuide(ctx, in, opts...)
 }
 
-// Test1 测试1
-func (m *defaultPRpc1) Test1(ctx context.Context, in *Test1Req, opts ...grpc.CallOption) (*Test1Resp, error) {
-	client := prpc1.NewPRpc1Client(m.cli.Conn())
-	return client.Test1(ctx, in, opts...)
-}
-
-// Test2 测试2
-func (m *defaultPRpc1) Test2(ctx context.Context, in *Test2Req, opts ...grpc.CallOption) (*Test2Resp, error) {
-	client := prpc1.NewPRpc1Client(m.cli.Conn())
-	return client.Test2(ctx, in, opts...)
-}
-
-//  Test3 测试3
-func (m *defaultPRpc1) Test3(ctx context.Context, in *Test3Req, opts ...grpc.CallOption) (*Test3Resp, error) {
-	client := prpc1.NewPRpc1Client(m.cli.Conn())
-	return client.Test3(ctx, in, opts...)
-}
-
-//  CheckAuth 风控检查
-func (m *defaultPRpc1) CheckAuth(ctx context.Context, in *AuthReq, opts ...grpc.CallOption) (*AuthResp, error) {
-	client := prpc1.NewPRpc1Client(m.cli.Conn())
-	return client.CheckAuth(ctx, in, opts...)
-}
-
-//  CheckAuth 风控检查
+//  Login 登录
 func (m *defaultPRpc1) Login(ctx context.Context, in *AuthReq, opts ...grpc.CallOption) (*AuthResp, error) {
 	client := prpc1.NewPRpc1Client(m.cli.Conn())
 	return client.Login(ctx, in, opts...)
+}
+
+//  UserInfo 获取用户数据
+func (m *defaultPRpc1) UserInfoGet(ctx context.Context, in *UserInfoReq, opts ...grpc.CallOption) (*UserInfoResp, error) {
+	client := prpc1.NewPRpc1Client(m.cli.Conn())
+	return client.UserInfoGet(ctx, in, opts...)
 }

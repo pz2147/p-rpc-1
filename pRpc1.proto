@@ -16,42 +16,6 @@ message Response {
   string pong = 1;
 }
 
-message Test1Req {
-  string rStr = 1;
-  int64 rInt = 2;
-  Test1CellModel rMap = 3;
-}
-
-message Test1CellModel {
-  string cp = 1;
-}
-
-message Test1Resp {
-  string rStr = 1;
-  int64 rInt = 2;
-  Test1CellModel rMap = 3;
-}
-
-message Test2Req {
-  string rStr = 1;
-  int64 rInt = 2;
-}
-
-message Test2Resp {
-  string rStr = 1;
-  int64 rInt = 2;
-}
-
-message Test3Req {
-  string rStr = 1;
-  int64 rInt = 2;
-}
-
-message Test3Resp {
-  string rStr = 1;
-  int64 rInt = 2;
-}
-
 message AuthReq {
   string phone = 1;
   string password = 2;
@@ -61,8 +25,20 @@ message AuthResp {
   string uid = 1;
   string nickname = 2;
   string pic = 3;
+  string AccessToken = 4;
+  int64 AccessExpire = 5;
+  int64 RefreshAfter = 6;
 }
 
+message UserInfoReq {
+  string uid = 1;
+}
+
+message UserInfoResp {
+  string Uid = 1;
+  string Nickname = 2;
+  string Pic = 3;
+}
 
 service PRpc1 {
   rpc Ping(Request) returns(Response);
@@ -70,19 +46,9 @@ service PRpc1 {
   //ESGuide elastic教程
   rpc ESGuide(EmptyReq) returns(EmptyResp);
 
-
-  //Test1 测试1
-  rpc Test1(Test1Req) returns(Test1Resp);
-
-  //Test2 测试2
-  rpc Test2(Test2Req) returns(Test2Resp);
-
-  // Test3 测试3
-  rpc Test3(Test3Req) returns(Test3Resp);
-
-  // CheckAuth 风控检查
-  rpc CheckAuth(AuthReq) returns(AuthResp);
-
   // Login 登录
   rpc Login(AuthReq) returns(AuthResp);
+
+  // UserInfoGet 获取用户数据
+  rpc UserInfoGet(UserInfoReq) returns(UserInfoResp);
 }
