@@ -5,13 +5,15 @@ Etcd:
   - 127.0.0.1:2379
   Key: prpc1.rpc
 
+JwtAuth:
+  AccessSecret: mSs8xuhkpzjBjfst
+  AccessExpire: 72000
 
 Telemetry:
   Name:
   Endpoint: http://127.0.0.1:14268/api/traces
   Sampler: 1.0
   Batcher: jaeger
-
 
 EsConfig:
   Addresses:
