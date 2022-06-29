@@ -7,7 +7,7 @@ import (
 	"github.com/pz2147/p-rpc-1/internal/svc"
 	"github.com/pz2147/p-rpc-1/prpc1"
 
-	"github.com/tal-tech/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type Test2Logic struct {

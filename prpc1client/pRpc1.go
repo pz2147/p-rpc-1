@@ -8,13 +8,15 @@ import (
 
 	"github.com/pz2147/p-rpc-1/prpc1"
 
-	"github.com/tal-tech/go-zero/zrpc"
+	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
 )
 
 type (
 	AuthReq        = prpc1.AuthReq
 	AuthResp       = prpc1.AuthResp
+	EmptyReq       = prpc1.EmptyReq
+	EmptyResp      = prpc1.EmptyResp
 	Request        = prpc1.Request
 	Response       = prpc1.Response
 	Test1CellModel = prpc1.Test1CellModel
@@ -27,6 +29,8 @@ type (
 
 	PRpc1 interface {
 		Ping(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+		// ESGuide elastic教程
+		ESGuide(ctx context.Context, in *EmptyReq, opts ...grpc.CallOption) (*EmptyResp, error)
 		// Test1 测试1
 		Test1(ctx context.Context, in *Test1Req, opts ...grpc.CallOption) (*Test1Resp, error)
 		// Test2 测试2
@@ -35,6 +39,8 @@ type (
 		Test3(ctx context.Context, in *Test3Req, opts ...grpc.CallOption) (*Test3Resp, error)
 		//  CheckAuth 风控检查
 		CheckAuth(ctx context.Context, in *AuthReq, opts ...grpc.CallOption) (*AuthResp, error)
+		//  CheckAuth 风控检查
+		Login(ctx context.Context, in *AuthReq, opts ...grpc.CallOption) (*AuthResp, error)
 	}
 
 	defaultPRpc1 struct {
@@ -51,6 +57,12 @@ func NewPRpc1(cli zrpc.Client) PRpc1 {
 func (m *defaultPRpc1) Ping(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
 	client := prpc1.NewPRpc1Client(m.cli.Conn())
 	return client.Ping(ctx, in, opts...)
+}
+
+// ESGuide elastic教程
+func (m *defaultPRpc1) ESGuide(ctx context.Context, in *EmptyReq, opts ...grpc.CallOption) (*EmptyResp, error) {
+	client := prpc1.NewPRpc1Client(m.cli.Conn())
+	return client.ESGuide(ctx, in, opts...)
 }
 
 // Test1 测试1
@@ -75,4 +87,10 @@ func (m *defaultPRpc1) Test3(ctx context.Context, in *Test3Req, opts ...grpc.Cal
 func (m *defaultPRpc1) CheckAuth(ctx context.Context, in *AuthReq, opts ...grpc.CallOption) (*AuthResp, error) {
 	client := prpc1.NewPRpc1Client(m.cli.Conn())
 	return client.CheckAuth(ctx, in, opts...)
+}
+
+//  CheckAuth 风控检查
+func (m *defaultPRpc1) Login(ctx context.Context, in *AuthReq, opts ...grpc.CallOption) (*AuthResp, error) {
+	client := prpc1.NewPRpc1Client(m.cli.Conn())
+	return client.Login(ctx, in, opts...)
 }

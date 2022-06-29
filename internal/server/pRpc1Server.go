@@ -26,6 +26,12 @@ func (s *PRpc1Server) Ping(ctx context.Context, in *prpc1.Request) (*prpc1.Respo
 	return l.Ping(in)
 }
 
+// ESGuide elastic教程
+func (s *PRpc1Server) ESGuide(ctx context.Context, in *prpc1.EmptyReq) (*prpc1.EmptyResp, error) {
+	l := logic.NewESGuideLogic(ctx, s.svcCtx)
+	return l.ESGuide(in)
+}
+
 // Test1 测试1
 func (s *PRpc1Server) Test1(ctx context.Context, in *prpc1.Test1Req) (*prpc1.Test1Resp, error) {
 	l := logic.NewTest1Logic(ctx, s.svcCtx)
@@ -48,4 +54,10 @@ func (s *PRpc1Server) Test3(ctx context.Context, in *prpc1.Test3Req) (*prpc1.Tes
 func (s *PRpc1Server) CheckAuth(ctx context.Context, in *prpc1.AuthReq) (*prpc1.AuthResp, error) {
 	l := logic.NewCheckAuthLogic(ctx, s.svcCtx)
 	return l.CheckAuth(in)
+}
+
+//  CheckAuth 风控检查
+func (s *PRpc1Server) Login(ctx context.Context, in *prpc1.AuthReq) (*prpc1.AuthResp, error) {
+	l := logic.NewLoginLogic(ctx, s.svcCtx)
+	return l.Login(in)
 }

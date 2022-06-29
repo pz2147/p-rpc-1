@@ -4,6 +4,9 @@ package pRpc1;
 
 option go_package = "prpc1";
 
+message EmptyReq {}
+message EmptyResp {}
+
 
 message Request {
   string ping = 1;
@@ -50,16 +53,23 @@ message Test3Resp {
 }
 
 message AuthReq {
-  bool rBool = 1;
+  string phone = 1;
+  string password = 2;
 }
 
 message AuthResp {
-  bool rBool = 1;
+  string uid = 1;
+  string nickname = 2;
+  string pic = 3;
 }
 
 
 service PRpc1 {
   rpc Ping(Request) returns(Response);
+
+  //ESGuide elastic教程
+  rpc ESGuide(EmptyReq) returns(EmptyResp);
+
 
   //Test1 测试1
   rpc Test1(Test1Req) returns(Test1Resp);
@@ -72,4 +82,7 @@ service PRpc1 {
 
   // CheckAuth 风控检查
   rpc CheckAuth(AuthReq) returns(AuthResp);
+
+  // Login 登录
+  rpc Login(AuthReq) returns(AuthResp);
 }
