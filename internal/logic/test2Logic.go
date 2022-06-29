@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"errors"
 
 	"github.com/pz2147/p-rpc-1/internal/svc"
 	"github.com/pz2147/p-rpc-1/prpc1"
@@ -9,22 +10,22 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type PingLogic struct {
+type Test2Logic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
 
-func NewPingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PingLogic {
-	return &PingLogic{
+func NewTest2Logic(ctx context.Context, svcCtx *svc.ServiceContext) *Test2Logic {
+	return &Test2Logic{
 		ctx:    ctx,
 		svcCtx: svcCtx,
 		Logger: logx.WithContext(ctx),
 	}
 }
 
-func (l *PingLogic) Ping(in *prpc1.Request) (*prpc1.Response, error) {
+// Test2 测试2
+func (l *Test2Logic) Test2(in *prpc1.Test2Req) (*prpc1.Test2Resp, error) {
 	// todo: add your logic here and delete this line
-
-	return &prpc1.Response{}, nil
+	return nil, errors.New("模拟错误情况")
 }

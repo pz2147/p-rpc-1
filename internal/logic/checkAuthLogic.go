@@ -9,22 +9,23 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type PingLogic struct {
+type CheckAuthLogic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
 
-func NewPingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PingLogic {
-	return &PingLogic{
+func NewCheckAuthLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CheckAuthLogic {
+	return &CheckAuthLogic{
 		ctx:    ctx,
 		svcCtx: svcCtx,
 		Logger: logx.WithContext(ctx),
 	}
 }
 
-func (l *PingLogic) Ping(in *prpc1.Request) (*prpc1.Response, error) {
+//  CheckAuth 风控检查
+func (l *CheckAuthLogic) CheckAuth(in *prpc1.AuthReq) (*prpc1.AuthResp, error) {
 	// todo: add your logic here and delete this line
 
-	return &prpc1.Response{}, nil
+	return &prpc1.AuthResp{}, nil
 }

@@ -1,0 +1,50 @@
+{
+  "index": "es_guide",
+  "mapping": {
+    "properties": {
+      "count": {
+        "type": "integer"
+      },
+      "mark": {
+        "type": "text"
+      },
+      "create_time": {
+        "type": "long"
+      }
+    },
+    "dynamic_templates": [
+      {
+
+        "id_as_keyword": {
+          "match_mapping_type": "string",
+          "match":   "*Id",
+          "mapping": {
+            "type": "keyword"
+          }
+        }
+      },
+      {
+        "ids_as_keyword": {
+          "match_mapping_type": "string",
+          "match":   "*Ids",
+          "mapping": {
+            "type": "keyword"
+          }
+        }
+      },
+      {
+        "all_analyzer": {
+          "match_mapping_type": "string",
+          "match": "*",
+          "mapping": {
+            "analyzer": "ik_smart",
+            "search_analyzer": "ik_smart"
+          }
+        }
+      }
+    ],
+    "_source": {
+      "enabled": true
+    }
+  }
+}

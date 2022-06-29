@@ -9,22 +9,23 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type PingLogic struct {
+type Test3Logic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
 
-func NewPingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PingLogic {
-	return &PingLogic{
+func NewTest3Logic(ctx context.Context, svcCtx *svc.ServiceContext) *Test3Logic {
+	return &Test3Logic{
 		ctx:    ctx,
 		svcCtx: svcCtx,
 		Logger: logx.WithContext(ctx),
 	}
 }
 
-func (l *PingLogic) Ping(in *prpc1.Request) (*prpc1.Response, error) {
+//  Test3 测试3
+func (l *Test3Logic) Test3(in *prpc1.Test3Req) (*prpc1.Test3Resp, error) {
 	// todo: add your logic here and delete this line
 
-	return &prpc1.Response{}, nil
+	return &prpc1.Test3Resp{}, nil
 }
